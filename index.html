@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luyện Phản Xạ Tiếng Anh</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pastelRed: '#FFB7B2',
+                        pastelRedDark: '#E28781',
+                        pastelGreen: '#B5EAD7',
+                        pastelGreenDark: '#70C1B3',
+                        pastelYellow: '#FFDAC1',
+                        pastelYellowDark: '#EAA97E',
+                        pastelCream: '#FFF9F2',
+                        pastelBrown: '#8D6E63',
+                        pastelBlue: '#C7CEEA',
+                    },
+                    fontFamily: {
+                        fredoka: ['Fredoka', 'sans-serif'],
+                        nunito: ['Nunito', 'sans-serif'],
+                    },
+                    animation: {
+                        'float-slow': 'float 4s ease-in-out infinite',
+                        'wiggle': 'wiggle 2s ease-in-out infinite',
+                        'bounce-gentle': 'bounceGentle 1.5s infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-8px)' },
+                        },
+                        wiggle: {
+                            '0%, 100%': { transform: 'rotate(-3deg)' },
+                            '50%': { transform: 'rotate(3deg)' },
+                        },
+                        bounceGentle: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-5px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #FFF9F2;
+            background-image: radial-gradient(#E2F0D9 1.5px, transparent 1.5px), radial-gradient(#E2F0D9 1.5px, #FFF9F2 1.5px);
+            background-size: 60px 60px;
+            background-position: 0 0, 30px 30px;
+        }
+
+        .heading-font {
+            font-family: 'Fredoka', cursive;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FFF9F2;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #FFB7B2;
+            border-radius: 999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #E28781;
+        }
+
+        .card-shadow {
+            box-shadow: 0 10px 25px -5px rgba(226, 135, 129, 0.15), 0 8px 10px -6px rgba(181, 234, 215, 0.2);
+        }
+
+        .wooden-border {
+            border: 4px solid #D7CCC8;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.06);
+        }
+    </style>
+</head>
+<body class="min-h-screen text-gray-700 flex flex-col justify-between selection:bg-pastelRed selection:text-white">
+
+    <!-- Header Section -->
+    <header class="bg-white/80 backdrop-blur-md border-b-2 border-pastelRed/30 sticky top-0 z-30 px-4 py-3 shadow-sm">
+        <div class="max-w-5xl mx-auto flex items-center justify-between">
+            <!-- Logo & Title -->
+            <div class="flex items-center gap-3">
+                <div class="relative flex items-center justify-center w-12 h-12 bg-pastelRed rounded-2xl shadow-sm animate-wiggle">
+                    <span class="text-2xl">🍎</span>
+                    <span class="absolute -top-1 -right-1 text-xs">✨</span>
+                </div>
+                <div>
+                    <h1 class="heading-font text-xl md:text-2xl font-bold text-pastelRedDark flex items-center gap-2">
+                        Lớp Anh thầy Kết
+                        <span class="text-xs font-normal bg-pastelGreen text-teal-800 px-2.5 py-0.5 rounded-full border border-pastelGreenDark/30">Phản xạ tiếng Anh</span>
+                    </h1>
+                    <p class="text-xs text-gray-500 hidden sm:block">Nông trại táo - Luyện phản xạ tự nhiên</p>
+                </div>
+            </div>
+
+            <!-- Header Actions -->
+            <div class="flex items-center gap-2">
+                <button id="btnOverview" onclick="openOverviewModal()" class="flex items-center gap-1.5 px-3 py-2 bg-pastelYellow hover:bg-pastelYellowDark/20 text-yellow-900 rounded-xl text-sm font-semibold transition border border-pastelYellowDark/30 shadow-sm active:scale-95">
+                    <i class="fa-solid fa-book-open text-pastelYellowDark"></i>
+                    <span class="hidden sm:inline">Toàn bộ bài học</span>
+                </button>
+                <button id="btnHelp" onclick="openHelpModal()" class="p-2 w-9 h-9 flex items-center justify-center bg-pastelBlue/40 hover:bg-pastelBlue text-indigo-900 rounded-xl text-sm font-bold transition border border-pastelBlue/50" title="Hướng dẫn phím tắt">
+                    <i class="fa-solid fa-keyboard"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 py-6 w-full flex-grow flex flex-col gap-5">
+        
+        <!-- Controls Bar: Lesson Selection & Mode Toggle -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center bg-white/90 rounded-2xl p-4 wooden-border card-shadow">
+            <!-- Lesson Selector -->
+            <div class="md:col-span-6 flex flex-col sm:flex-row items-start sm:items-center gap-2">
+                <label for="lessonSelect" class="text-xs font-bold uppercase tracking-wider text-pastelBrown flex items-center gap-1.5 shrink-0">
+                    <i class="fa-solid fa-apple-whole text-pastelRed"></i> Chọn bài học:
+                </label>
+                <select id="lessonSelect" onchange="changeLesson(this.value)" class="w-full bg-pastelCream border-2 border-pastelRed/40 rounded-xl px-3 py-2 text-sm font-bold text-gray-700 focus:outline-none focus:border-pastelRed transition cursor-pointer">
+                    <!-- Populated dynamically -->
+                </select>
+            </div>
+
+            <!-- Mode Switch (Anh->Việt / Việt->Anh) -->
+            <div class="md:col-span-6 flex items-center justify-end justify-between md:justify-end gap-3 border-t md:border-t-0 pt-3 md:pt-0 border-gray-100">
+                <span class="text-xs font-bold uppercase tracking-wider text-pastelBrown">Chế độ phản xạ:</span>
+                <div class="inline-flex p-1 bg-pastelCream rounded-xl border border-pastelYellowDark/20 shadow-inner">
+                    <button id="modeEnVi" onclick="setMode('EN_VI')" class="px-3.5 py-1.5 rounded-lg text-xs font-extrabold transition-all duration-200">
+                        🇬🇧 Anh ➔ 🇻🇳 Việt
+                    </button>
+                    <button id="modeViEn" onclick="setMode('VI_EN')" class="px-3.5 py-1.5 rounded-lg text-xs font-extrabold transition-all duration-200">
+                        🇻🇳 Việt ➔ 🇬🇧 Anh
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress Indicator -->
+        <div class="bg-white/80 rounded-2xl p-3 px-5 flex flex-col sm:flex-row items-center justify-between gap-3 border border-pastelGreenDark/20 card-shadow">
+            <div class="flex items-center gap-2 w-full sm:w-auto">
+                <div class="flex items-center justify-center w-8 h-8 rounded-full bg-pastelGreen text-teal-800 font-bold text-sm">
+                    <i class="fa-solid fa-flag-checkered"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span id="situationTitle" class="text-sm font-bold text-gray-800">Tình huống 1: Chào hỏi</span>
+                    <span id="lessonProgressText" class="text-xs font-semibold text-gray-500">Câu 1 / 12</span>
+                </div>
+            </div>
+
+            <!-- Apple Progress Bar -->
+            <div class="w-full sm:w-64 bg-pastelCream rounded-full h-3.5 p-0.5 border border-pastelGreenDark/30 relative overflow-hidden">
+                <div id="progressBar" class="bg-gradient-to-r from-pastelRed to-pastelRedDark h-full rounded-full transition-all duration-300 relative" style="width: 8%;">
+                    <div class="absolute right-0 top-0 bottom-0 w-2 bg-white/40 rounded-full animate-pulse"></div>
+                </div>
+            </div>
+
+            <!-- Auto-Speech Toggle -->
+            <button id="btnAutoSpeech" onclick="toggleAutoSpeech()" class="flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-xl border transition shrink-0 bg-pastelGreen/40 text-teal-900 border-pastelGreenDark/30">
+                <i id="autoSpeechIcon" class="fa-solid fa-volume-high"></i>
+                <span>Tự phát âm: <strong id="autoSpeechStatus">BẬT</strong></span>
+            </button>
+        </div>
+
+        <!-- Main Card Component (Unified Card with Built-in Navigation) -->
+        <div class="relative bg-white rounded-3xl p-5 md:p-7 wooden-border card-shadow flex flex-col justify-between min-h-[420px] transition-all duration-300">
+            
+            <!-- Top Card Header: Speaker Info & Controls -->
+            <div class="w-full flex items-center justify-between border-b border-gray-100 pb-3 mb-3">
+                <!-- Person Tag (A or B) -->
+                <div id="speakerBadge" class="flex items-center gap-2.5 px-3.5 py-1 rounded-2xl bg-pastelRed/20 text-pastelRedDark border border-pastelRed/30 font-bold text-xs md:text-sm">
+                    <span id="speakerAvatar" class="w-6 h-6 rounded-full bg-pastelRed text-white flex items-center justify-center font-extrabold text-xs">A</span>
+                    <span id="speakerName">Người nói A</span>
+                </div>
+
+                <!-- Top Right Actions: Shuffle & Speaker Audio -->
+                <div class="flex items-center gap-2">
+                    <button onclick="shuffleSentences()" class="p-2 px-3 bg-pastelBlue/30 hover:bg-pastelBlue text-indigo-900 rounded-xl text-xs font-bold transition border border-pastelBlue/50 active:scale-95 flex items-center gap-1" title="Tráo câu ngẫu nhiên">
+                        <i class="fa-solid fa-shuffle text-xs"></i>
+                        <span class="hidden sm:inline">Tráo câu</span>
+                    </button>
+                    <button onclick="speakCurrentSentence()" class="flex items-center gap-1.5 px-3.5 py-1.5 bg-pastelYellow/80 hover:bg-pastelYellow text-yellow-900 rounded-xl text-xs font-extrabold transition border border-pastelYellowDark/40 shadow-sm active:scale-95 group">
+                        <i class="fa-solid fa-volume-high text-xs text-pastelYellowDark group-hover:scale-110 transition-transform"></i>
+                        <span>Nghe câu này</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card Central Content (The Reflex Prompt & Revealed Answer) -->
+            <div class="w-full flex-grow flex flex-col items-center justify-center text-center my-2 px-1">
+                
+                <!-- Prompt Box (Always Visible) -->
+                <div class="w-full max-w-2xl mb-4">
+                    <span class="inline-block text-[11px] font-extrabold tracking-wider text-pastelBrown uppercase mb-1 bg-pastelYellow/40 px-2.5 py-0.5 rounded-full border border-pastelYellowDark/30">Thử thách phản xạ</span>
+                    <h2 id="promptText" class="text-xl md:text-3xl font-extrabold text-gray-800 leading-relaxed min-h-[50px] flex items-center justify-center">
+                        Hello! What’s your name?
+                    </h2>
+                    <p id="promptIpa" class="text-xs md:text-sm font-semibold text-pastelRedDark tracking-wide mt-1 font-mono">
+                        /həˈloʊ! wʌts jɔːr neɪm?/
+                    </p>
+                </div>
+
+                <!-- Divider / Reveal Button -->
+                <div class="my-1 w-full flex items-center justify-center">
+                    <button id="btnReveal" onclick="toggleRevealAnswer()" class="group relative px-5 py-2 bg-pastelGreen hover:bg-pastelGreenDark/80 text-teal-900 font-extrabold text-xs md:text-sm rounded-2xl shadow-md transition-all duration-200 border border-pastelGreenDark/40 flex items-center gap-2 active:scale-95">
+                        <span id="revealIcon">👁️</span>
+                        <span id="revealText">Bấm để hiện đáp án</span>
+                        <span class="text-[10px] bg-white/60 px-1.5 py-0.5 rounded font-normal text-teal-800 ml-1 hidden sm:inline">(Space)</span>
+                    </button>
+                </div>
+
+                <!-- Answer Box (Revealed on click) -->
+                <div id="answerBox" class="w-full max-w-2xl mt-3 p-3.5 md:p-4 rounded-2xl bg-pastelCream/90 border-2 border-dashed border-pastelYellowDark/30 transition-all duration-300 opacity-0 transform translate-y-2 pointer-events-none relative group">
+                    <div class="flex items-center justify-center gap-2 mb-1">
+                        <span class="inline-block text-[11px] font-bold tracking-wider text-pastelBrown uppercase">Đáp án đối chiếu</span>
+                        <button onclick="speakAnswerSentence()" class="p-1 px-2 bg-pastelYellow/70 hover:bg-pastelYellow text-yellow-900 rounded-lg text-xs font-bold transition border border-pastelYellowDark/30 active:scale-95 flex items-center gap-1" title="Nghe đáp án">
+                            <i class="fa-solid fa-volume-high text-pastelYellowDark text-xs"></i>
+                            <span>Nghe đáp án</span>
+                        </button>
+                    </div>
+                    <p id="answerText" class="text-lg md:text-2xl font-bold text-teal-900 leading-snug">
+                        (Xin chào! Bạn tên là gì?)
+                    </p>
+                    <p id="answerIpa" class="text-xs md:text-sm font-semibold text-pastelRedDark tracking-wide mt-1 font-mono">
+                        <!-- Shows IPA if in VI->EN mode -->
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- Bottom Navigation Bar & Card Counter (Built inside the Card Container) -->
+            <div class="w-full pt-3 mt-2 border-t border-gray-100 flex items-center justify-between gap-3">
+                <!-- Back Button -->
+                <button onclick="prevSentence()" class="px-4 md:px-6 py-2.5 bg-pastelCream hover:bg-pastelYellow/60 text-pastelBrown font-extrabold text-xs md:text-sm rounded-xl transition flex items-center gap-2 border border-pastelYellowDark/30 shadow-sm active:scale-95 shrink-0">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>Back (Lùi)</span>
+                </button>
+
+                <!-- Center Counter Info -->
+                <div class="flex items-center gap-1.5 text-xs font-bold text-gray-500 bg-gray-50 px-3 py-1.5 rounded-xl border border-gray-200">
+                    <i class="fa-solid fa-leaf text-pastelGreenDark"></i>
+                    <span>Thẻ <span id="currentCardIndex" class="text-pastelRedDark font-extrabold">1</span>/<span id="totalCardCount">12</span></span>
+                </div>
+
+                <!-- Next Button -->
+                <button onclick="nextSentence()" class="px-5 md:px-7 py-2.5 bg-pastelRed hover:bg-pastelRedDark text-white font-extrabold text-xs md:text-sm rounded-xl transition flex items-center gap-2 shadow-md border border-pastelRedDark/30 active:scale-95 shrink-0">
+                    <span>Next (Tiếp)</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white/60 border-t border-pastelRed/20 py-4 px-4 text-center text-xs text-gray-500">
+        <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+            <p>🍎 <strong>Lớp Anh thầy Kết</strong> &copy; 2026 - Luyện phản xạ mỗi ngày</p>
+            <p class="text-gray-400">Chăm chỉ thực hành nói mỗi ngày</p>
+        </div>
+    </footer>
+
+    <!-- Overview Modal (Toàn bộ bài học) -->
+    <div id="overviewModal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300">
+        <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[85vh] flex flex-col wooden-border shadow-2xl overflow-hidden transform scale-95 transition-transform duration-300">
+            <!-- Modal Header -->
+            <div class="p-4 md:p-5 bg-pastelRed/20 border-b border-pastelRed/30 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl">📖</span>
+                    <div>
+                        <h3 id="modalLessonTitle" class="heading-font text-lg font-bold text-pastelRedDark">Danh Sách Câu Trong Bài Học</h3>
+                        <p class="text-xs text-gray-500">Xem trước hoặc chọn câu cụ thể để luyện tập</p>
+                    </div>
+                </div>
+                <button onclick="closeOverviewModal()" class="w-8 h-8 rounded-full bg-white text-gray-500 hover:text-gray-800 flex items-center justify-center shadow-sm">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Modal Body (List of dialogues) -->
+            <div id="overviewList" class="p-4 md:p-6 overflow-y-auto space-y-6 flex-grow">
+                <!-- Dynamically filled with situation blocks -->
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="p-3 bg-pastelCream border-t border-gray-100 flex justify-end">
+                <button onclick="closeOverviewModal()" class="px-5 py-2 bg-pastelRed text-white text-xs font-bold rounded-xl hover:bg-pastelRedDark transition">
+                    Đóng cửa sổ
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Help Modal (Phím tắt) -->
+    <div id="helpModal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 wooden-border shadow-2xl space-y-4">
+            <div class="flex items-center justify-between border-b pb-3 border-gray-100">
+                <h3 class="heading-font text-lg font-bold text-gray-800 flex items-center gap-2">
+                    <i class="fa-solid fa-keyboard text-pastelRed"></i> Hướng Dẫn Phím Tắt
+                </h3>
+                <button onclick="closeHelpModal()" class="w-8 h-8 rounded-full bg-gray-100 text-gray-500 hover:text-gray-800 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            
+            <div class="space-y-3 text-sm">
+                <div class="flex items-center justify-between p-2.5 bg-pastelCream rounded-xl">
+                    <span class="font-semibold text-gray-700">Câu tiếp theo (Next)</span>
+                    <kbd class="px-2.5 py-1 bg-white border border-gray-300 rounded-md font-mono text-xs shadow-sm">➡️ Mũi tên phải</kbd>
+                </div>
+                <div class="flex items-center justify-between p-2.5 bg-pastelCream rounded-xl">
+                    <span class="font-semibold text-gray-700">Câu trước đó (Back)</span>
+                    <kbd class="px-2.5 py-1 bg-white border border-gray-300 rounded-md font-mono text-xs shadow-sm">⬅️ Mũi tên trái</kbd>
+                </div>
+                <div class="flex items-center justify-between p-2.5 bg-pastelCream rounded-xl">
+                    <span class="font-semibold text-gray-700">Hiện / Ẩn đáp án</span>
+                    <kbd class="px-2.5 py-1 bg-white border border-gray-300 rounded-md font-mono text-xs shadow-sm">Spacebar (Phím cách)</kbd>
+                </div>
+                <div class="flex items-center justify-between p-2.5 bg-pastelCream rounded-xl">
+                    <span class="font-semibold text-gray-700">Phát lại âm thanh</span>
+                    <kbd class="px-2.5 py-1 bg-white border border-gray-300 rounded-md font-mono text-xs shadow-sm">Phím R hoặc A</kbd>
+                </div>
+            </div>
+
+            <button onclick="closeHelpModal()" class="w-full py-2.5 bg-pastelGreen text-teal-900 font-bold text-xs rounded-xl hover:bg-pastelGreenDark transition">
+                Đã hiểu, quay lại học!
+            </button>
+        </div>
+    </div>
+
+    <!-- Application Logic Script -->
+    <script>
+        // Data Structure for Lessons
+        const LESSONS = [
+{
+        id: "lesson1",
+        title: "Lesson 1: S + be + thời gian / địa điểm (Daily Routine)",
+        situations: [
+            {
+                title: "Tình huống 1: S + be + thời gian / địa điểm trong ngày",
+                dialogues: [
+                    { speaker: "1", name: "Câu 1", en: "I am at my desk at eight.", ipa: "/aɪ æm æt maɪ desk æt eɪt./", vi: "Tôi ở bàn học lúc 8 giờ." },
+                    { speaker: "2", name: "Câu 2", en: "My alarm is on my bed.", ipa: "/maɪ əˈlɑːm ɪz ɒn maɪ bed./", vi: "Báo thức của tôi ở trên giường." },
+                    { speaker: "3", name: "Câu 3", en: "It is seven o'clock in the morning.", ipa: "/ɪt ɪz ˈsev.ən əˈklɒk ɪn ðə ˈmɔː.nɪŋ./", vi: "Bây giờ là 7 giờ sáng." },
+                    { speaker: "4", name: "Câu 4", en: "My family is at home in the morning.", ipa: "/maɪ ˈfæm.əl.i ɪz æt həʊm ɪn ðə ˈmɔː.nɪŋ./", vi: "Gia đình tôi ở nhà vào buổi sáng." },
+                    { speaker: "5", name: "Câu 5", en: "I am busy on weekdays.", ipa: "/aɪ æm ˈbɪz.i ɒn ˈwiːk.deɪz./", vi: "Tôi bận vào các ngày trong tuần." },
+                    { speaker: "6", name: "Câu 6", en: "I am at a coffee shop in the afternoon.", ipa: "/aɪ æm æt ə ˈkɒf.i ʃɒp ɪn ði ˌɑːf.təˈnuːn./", vi: "Tôi ở quán cà phê vào buổi chiều." },
+                    { speaker: "7", name: "Câu 7", en: "My phone is on silent.", ipa: "/maɪ fəʊn ɪz ɒn ˈsaɪ.lənt./", vi: "Điện thoại của tôi đang để chế độ im lặng." },
+                    { speaker: "8", name: "Câu 8", en: "My book is on the table.", ipa: "/maɪ bʊk ɪz ɒn ðə ˈteɪ.bəl./", vi: "Sách của tôi ở trên bàn." },
+                    { speaker: "9", name: "Câu 9", en: "We are in the park in the afternoon.", ipa: "/wi ɑːr ɪn ðə pɑːk ɪn ði ˌɑːf.təˈnuːn./", vi: "Chúng tôi ở công viên vào buổi chiều." },
+                    { speaker: "10", name: "Câu 10", en: "I am at home in the evening.", ipa: "/aɪ æm æt həʊm ɪn ði ˈiːv.nɪŋ./", vi: "Tôi ở nhà vào buổi tối." }
+                ]
+            }
+        ]
+    },
+    {
+        id: "lesson2",
+        title: "Lesson 2: S + Vc + Địa điểm + Thời gian (Daily Routine)",
+        situations: [
+            {
+                title: "Tình huống 1: S + Vc + địa điểm + thời gian trong ngày",
+                dialogues: [
+                    { speaker: "1", name: "Câu 1", en: "I check my phone in bed in the morning.", ipa: "/aɪ tʃek maɪ fəʊn ɪn bed ɪn ðə ˈmɔː.nɪŋ./", vi: "Tôi kiểm tra điện thoại trên giường vào buổi sáng." },
+                    { speaker: "2", name: "Câu 2", en: "I cook dinner in the kitchen in the evening.", ipa: "/aɪ kʊk ˈdɪn.ər ɪn ðə ˈkɪtʃ.ən ɪn ði ˈiːv.nɪŋ./", vi: "Tôi nấu bữa tối trong bếp vào buổi tối." },
+                    { speaker: "3", name: "Câu 3", en: "I go to work by motorbike every day.", ipa: "/aɪ ɡəʊ tu wɜːk baɪ ˈməʊ.tə.baɪk ˈev.ri deɪ./", vi: "Tôi đi làm bằng xe máy mỗi ngày." },
+                    { speaker: "4", name: "Câu 4", en: "I exercise at home in the afternoon.", ipa: "/aɪ ˈek.sə.saɪz æt həʊm ɪn ði ˌɑːf.təˈnuːn./", vi: "Tôi tập thể dục ở nhà vào buổi chiều." },
+                    { speaker: "5", name: "Câu 5", en: "I read a book in bed at night.", ipa: "/aɪ riːd ə bʊk ɪn bed æt naɪt./", vi: "Tôi đọc sách trên giường vào ban đêm." },
+                    { speaker: "6", name: "Câu 6", en: "I eat breakfast at home at seven.", ipa: "/aɪ iːt ˈbrek.fəst æt həʊm æt ˈsev.ən./", vi: "Tôi ăn sáng ở nhà lúc 7 giờ." },
+                    { speaker: "7", name: "Câu 7", en: "I have lunch at my desk at noon.", ipa: "/aɪ hæv lʌntʃ æt maɪ desk æt nuːn./", vi: "Tôi ăn trưa ở bàn làm việc vào buổi trưa." },
+                    { speaker: "8", name: "Câu 8", en: "I meet friends at a cafe on Sunday.", ipa: "/aɪ miːt frendz æt ə ˈkæf.eɪ ɒn ˈsʌn.deɪ./", vi: "Tôi gặp bạn bè ở quán cà phê vào Chủ nhật." },
+                    { speaker: "9", name: "Câu 9", en: "I drink coffee in the morning.", ipa: "/aɪ drɪŋk ˈkɒf.i ɪn ðə ˈmɔː.nɪŋ./", vi: "Tôi uống cà phê vào buổi sáng." },
+                    { speaker: "10", name: "Câu 10", en: "I watch TV in the living room in the evening.", ipa: "/aɪ wɒtʃ ˌtiːˈviː ɪn ðə ˈlɪv.ɪŋ ruːm ɪn ði ˈiːv.nɪŋ./", vi: "Tôi xem TV ở phòng khách vào buổi tối." }
+                ]
+            }
+        ]
+    },
+
+        ];
+
+        // Application State
+        let currentLessonIndex = 0;
+        let flatSentences = []; // Flattened array of sentences in the current lesson
+        let currentIndex = 0;
+        let mode = 'VI_EN'; // 'EN_VI' (Default: English -> Vietnamese) or 'VI_EN'
+        let isRevealed = false;
+        let autoSpeech = true;
+        let availableVoices = [];
+
+        // Initialize Speech Synthesis & Load Voices
+        const synth = window.speechSynthesis;
+
+        function loadVoices() {
+            if ('speechSynthesis' in window) {
+                availableVoices = synth.getVoices();
+            }
+        }
+
+        if ('speechSynthesis' in window) {
+            loadVoices();
+            if (speechSynthesis.onvoiceschanged !== undefined) {
+                speechSynthesis.onvoiceschanged = loadVoices;
+            }
+        }
+
+        // Initialize App on DOM Load
+        window.addEventListener('DOMContentLoaded', () => {
+            populateLessonDropdown();
+            loadLesson(0);
+            setupKeyboardShortcuts();
+        });
+
+        // Populate Lesson Dropdown
+        function populateLessonDropdown() {
+            const select = document.getElementById('lessonSelect');
+            select.innerHTML = '';
+            LESSONS.forEach((lesson, index) => {
+                const opt = document.createElement('option');
+                opt.value = index;
+                opt.textContent = lesson.title;
+                select.appendChild(opt);
+            });
+        }
+
+        // Load a specific lesson
+        function loadLesson(index) {
+            currentLessonIndex = parseInt(index);
+            const lesson = LESSONS[currentLessonIndex];
+            
+            // Flatten dialogues
+            flatSentences = [];
+            lesson.situations.forEach((sit) => {
+                sit.dialogues.forEach((d) => {
+                    flatSentences.push({
+                        ...d,
+                        situationTitle: sit.title
+                    });
+                });
+            });
+
+            currentIndex = 0;
+            updateModeButtonsUI();
+            renderCard();
+        }
+
+        function changeLesson(index) {
+            loadLesson(index);
+        }
+
+        // Set Reflex Mode (EN->VI or VI->EN)
+        function setMode(newMode) {
+            mode = newMode;
+            updateModeButtonsUI();
+            renderCard();
+        }
+
+        function updateModeButtonsUI() {
+            const btnEnVi = document.getElementById('modeEnVi');
+            const btnViEn = document.getElementById('modeViEn');
+
+            if (mode === 'EN_VI') {
+                btnEnVi.className = "px-3.5 py-1.5 rounded-lg text-xs font-extrabold shadow-sm bg-pastelRed text-white transition-all duration-200";
+                btnViEn.className = "px-3.5 py-1.5 rounded-lg text-xs font-extrabold text-gray-500 hover:text-gray-800 transition-all duration-200";
+            } else {
+                btnViEn.className = "px-3.5 py-1.5 rounded-lg text-xs font-extrabold shadow-sm bg-pastelGreenDark text-white transition-all duration-200";
+                btnEnVi.className = "px-3.5 py-1.5 rounded-lg text-xs font-extrabold text-gray-500 hover:text-gray-800 transition-all duration-200";
+            }
+        }
+
+        // Render Current Card Details
+        function renderCard() {
+            if (flatSentences.length === 0) return;
+
+            const item = flatSentences[currentIndex];
+            isRevealed = false;
+
+            // Speaker Badge
+            const speakerBadge = document.getElementById('speakerBadge');
+            const speakerAvatar = document.getElementById('speakerAvatar');
+            const speakerName = document.getElementById('speakerName');
+
+            speakerAvatar.textContent = item.speaker;
+            speakerName.textContent = item.name || `Người nói ${item.speaker}`;
+
+            if (item.speaker === 'A') {
+                speakerBadge.className = "flex items-center gap-2.5 px-4 py-1.5 rounded-2xl bg-pastelRed/20 text-pastelRedDark border border-pastelRed/30 font-bold text-sm";
+                speakerAvatar.className = "w-7 h-7 rounded-full bg-pastelRed text-white flex items-center justify-center font-extrabold text-xs shadow-sm";
+            } else {
+                speakerBadge.className = "flex items-center gap-2.5 px-4 py-1.5 rounded-2xl bg-pastelGreen/30 text-teal-900 border border-pastelGreenDark/30 font-bold text-sm";
+                speakerAvatar.className = "w-7 h-7 rounded-full bg-pastelGreenDark text-white flex items-center justify-center font-extrabold text-xs shadow-sm";
+            }
+
+            // Situation Title & Progress Indicator
+            document.getElementById('situationTitle').textContent = item.situationTitle;
+            document.getElementById('lessonProgressText').textContent = `Câu ${currentIndex + 1} / ${flatSentences.length}`;
+            document.getElementById('currentCardIndex').textContent = currentIndex + 1;
+            document.getElementById('totalCardCount').textContent = flatSentences.length;
+
+            const percent = ((currentIndex + 1) / flatSentences.length) * 100;
+            document.getElementById('progressBar').style.width = `${percent}%`;
+
+            // Prompt & Answer Text according to mode
+            const promptText = document.getElementById('promptText');
+            const promptIpa = document.getElementById('promptIpa');
+            const answerText = document.getElementById('answerText');
+            const answerIpa = document.getElementById('answerIpa');
+
+            if (mode === 'EN_VI') {
+                promptText.textContent = item.en;
+                promptIpa.textContent = item.ipa || '';
+                promptIpa.style.display = item.ipa ? 'block' : 'none';
+
+                answerText.textContent = item.vi;
+                answerIpa.textContent = '';
+                answerIpa.style.display = 'none';
+            } else {
+                promptText.textContent = item.vi;
+                promptIpa.textContent = '';
+                promptIpa.style.display = 'none';
+
+                answerText.textContent = item.en;
+                answerIpa.textContent = item.ipa || '';
+                answerIpa.style.display = item.ipa ? 'block' : 'none';
+            }
+
+            // Reset Answer Box Visibility
+            hideAnswerBoxUI();
+
+            // Auto Speech Trigger
+            if (autoSpeech) {
+                speakCurrentSentence();
+            }
+        }
+
+        // Answer Box Visibility UI Toggles
+        function toggleRevealAnswer() {
+            isRevealed = !isRevealed;
+            if (isRevealed) {
+                showAnswerBoxUI();
+            } else {
+                hideAnswerBoxUI();
+            }
+        }
+
+        function showAnswerBoxUI() {
+            const answerBox = document.getElementById('answerBox');
+            const btnReveal = document.getElementById('btnReveal');
+            const revealText = document.getElementById('revealText');
+            const revealIcon = document.getElementById('revealIcon');
+
+            answerBox.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-2');
+            answerBox.classList.add('opacity-100', 'translate-y-0');
+
+            revealText.textContent = "Ẩn đáp án";
+            revealIcon.textContent = "🙈";
+            btnReveal.className = "group relative px-6 py-2.5 bg-pastelYellowDark/20 hover:bg-pastelYellowDark/30 text-yellow-900 font-extrabold text-sm rounded-2xl shadow-sm transition-all duration-200 border border-pastelYellowDark/40 flex items-center gap-2 active:scale-95";
+        }
+
+        function hideAnswerBoxUI() {
+            const answerBox = document.getElementById('answerBox');
+            const btnReveal = document.getElementById('btnReveal');
+            const revealText = document.getElementById('revealText');
+            const revealIcon = document.getElementById('revealIcon');
+
+            answerBox.classList.add('opacity-0', 'pointer-events-none', 'translate-y-2');
+            answerBox.classList.remove('opacity-100', 'translate-y-0');
+
+            revealText.textContent = "Bấm để hiện đáp án";
+            revealIcon.textContent = "👁️";
+            btnReveal.className = "group relative px-6 py-2.5 bg-pastelGreen hover:bg-pastelGreenDark/80 text-teal-900 font-extrabold text-sm rounded-2xl shadow-md transition-all duration-200 border border-pastelGreenDark/40 flex items-center gap-2 active:scale-95";
+        }
+
+        // Navigation Handlers
+        function nextSentence() {
+            if (currentIndex < flatSentences.length - 1) {
+                currentIndex++;
+                renderCard();
+            } else {
+                // Loop around or finish
+                currentIndex = 0;
+                renderCard();
+            }
+        }
+
+        function prevSentence() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                renderCard();
+            } else {
+                currentIndex = flatSentences.length - 1;
+                renderCard();
+            }
+        }
+
+        function shuffleSentences() {
+            for (let i = flatSentences.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [flatSentences[i], flatSentences[j]] = [flatSentences[j], flatSentences[i]];
+            }
+            currentIndex = 0;
+            renderCard();
+        }
+
+        // Helper function to play text with specific language
+        function speakText(text, lang) {
+            if (!('speechSynthesis' in window)) return;
+            if (!text) return;
+
+            synth.cancel(); // Stop any current audio
+
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = lang;
+            utterance.rate = lang.startsWith('vi') ? 0.95 : 0.9;
+
+            // Try to find the best voice matching language
+            if (availableVoices.length > 0) {
+                const matchedVoice = availableVoices.find(v => v.lang === lang || v.lang.startsWith(lang.split('-')[0]));
+                if (matchedVoice) {
+                    utterance.voice = matchedVoice;
+                }
+            }
+
+            synth.speak(utterance);
+        }
+
+        // Speech Handler for Main Prompt Sentence (Adapts dynamically to mode)
+        function speakCurrentSentence() {
+            const item = flatSentences[currentIndex];
+            if (!item) return;
+
+            if (mode === 'EN_VI') {
+                // Main prompt is English -> Speak English
+                speakText(item.en, 'en-US');
+            } else {
+                // Main prompt is Vietnamese -> Speak Vietnamese
+                speakText(item.vi, 'vi-VN');
+            }
+        }
+
+        // Speech Handler for Answer Sentence
+        function speakAnswerSentence() {
+            const item = flatSentences[currentIndex];
+            if (!item) return;
+
+            if (mode === 'EN_VI') {
+                // Answer is Vietnamese -> Speak Vietnamese
+                speakText(item.vi, 'vi-VN');
+            } else {
+                // Answer is English -> Speak English
+                speakText(item.en, 'en-US');
+            }
+        }
+
+        // Auto Speech Toggle
+        function toggleAutoSpeech() {
+            autoSpeech = !autoSpeech;
+            const statusText = document.getElementById('autoSpeechStatus');
+            const btn = document.getElementById('btnAutoSpeech');
+
+            if (autoSpeech) {
+                statusText.textContent = "BẬT";
+                btn.className = "flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-xl border transition shrink-0 bg-pastelGreen/40 text-teal-900 border-pastelGreenDark/30";
+            } else {
+                statusText.textContent = "TẮT";
+                btn.className = "flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-xl border transition shrink-0 bg-gray-100 text-gray-500 border-gray-200";
+            }
+        }
+
+        // Overview Modal logic
+        function openOverviewModal() {
+            const modal = document.getElementById('overviewModal');
+            const list = document.getElementById('overviewList');
+            const title = document.getElementById('modalLessonTitle');
+            const currentLesson = LESSONS[currentLessonIndex];
+
+            title.textContent = currentLesson.title;
+            list.innerHTML = '';
+
+            currentLesson.situations.forEach((sit) => {
+                const sitDiv = document.createElement('div');
+                sitDiv.className = "space-y-3";
+
+                const sitTitle = document.createElement('h4');
+                sitTitle.className = "font-extrabold text-sm text-pastelBrown flex items-center gap-1.5 border-b border-pastelYellowDark/30 pb-1";
+                sitTitle.innerHTML = `<i class="fa-solid fa-apple-whole text-pastelRed"></i> ${sit.title}`;
+                sitDiv.appendChild(sitTitle);
+
+                const dialogueList = document.createElement('div');
+                dialogueList.className = "space-y-2 pl-2";
+
+                sit.dialogues.forEach((d) => {
+                    const row = document.createElement('div');
+                    row.className = "p-3 rounded-2xl bg-pastelCream/60 hover:bg-pastelYellow/30 border border-gray-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2 transition cursor-pointer";
+                    
+                    // Direct navigation click
+                    row.onclick = () => {
+                        const targetIdx = flatSentences.findIndex(s => s.en === d.en);
+                        if (targetIdx !== -1) {
+                            currentIndex = targetIdx;
+                            renderCard();
+                            closeOverviewModal();
+                        }
+                    };
+
+                    row.innerHTML = `
+                        <div class="flex items-start gap-2.5">
+                            <span class="w-6 h-6 rounded-full ${d.speaker === 'A' ? 'bg-pastelRed' : 'bg-pastelGreenDark'} text-white flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">${d.speaker}</span>
+                            <div>
+                                <p class="text-sm font-bold text-gray-800">${d.en}</p>
+                                <p class="text-xs text-pastelRedDark font-mono">${d.ipa}</p>
+                            </div>
+                        </div>
+                        <div class="text-xs font-semibold text-gray-600 sm:text-right pl-8 sm:pl-0">
+                            ${d.vi}
+                        </div>
+                    `;
+                    dialogueList.appendChild(row);
+                });
+
+                sitDiv.appendChild(dialogueList);
+                list.appendChild(sitDiv);
+            });
+
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modal.querySelector('div').classList.remove('scale-95');
+        }
+
+        function closeOverviewModal() {
+            const modal = document.getElementById('overviewModal');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modal.querySelector('div').classList.add('scale-95');
+        }
+
+        // Keyboard Help Modal logic
+        function openHelpModal() {
+            const modal = document.getElementById('helpModal');
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+        }
+
+        function closeHelpModal() {
+            const modal = document.getElementById('helpModal');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+        }
+
+        // Keyboard Shortcuts Handler
+        function setupKeyboardShortcuts() {
+            window.addEventListener('keydown', (e) => {
+                // Ignore if user is typing in inputs/selects
+                if (['INPUT', 'SELECT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+
+                if (e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    nextSentence();
+                } else if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    prevSentence();
+                } else if (e.key === ' ' || e.code === 'Space') {
+                    e.preventDefault();
+                    toggleRevealAnswer();
+                } else if (e.key === 'r' || e.key === 'R' || e.key === 'a' || e.key === 'A') {
+                    e.preventDefault();
+                    speakCurrentSentence();
+                }
+            });
+        }
+    </script>
+</body>
+</html>
